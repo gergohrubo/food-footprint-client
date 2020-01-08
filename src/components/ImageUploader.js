@@ -1,41 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { makeStyles } from '@material-ui/core/styles';
 
-const baseStyle = {
-  flex: 1,
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  padding: '20px',
-  borderWidth: 2,
-  borderRadius: 2,
-  borderColor: '#eeeeee',
-  borderStyle: 'dashed',
-  backgroundColor: '#fafafa',
-  color: '#bdbdbd',
-  outline: 'none',
-  transition: 'border .24s ease-in-out'
-};
-
-const thumb = {
-  display: 'inline-flex',
-  borderRadius: 2,
-  border: '1px solid #eaeaea',
-  marginBottom: 8,
-  marginRight: 8,
-  padding: 4,
-  boxSizing: 'border-box'
-}
-
-const img = {
-  display: 'block',
-  width: 'auto',
-  height: '100%'
-}
+const useStyles = makeStyles(theme => ({
+  container: {
+    marginLeft: '5vw',
+    marginTop: '5vw',
+    width: '40vw',
+    height: '40vw',
+    borderWidth: 2,
+    borderRadius: 2,
+    borderColor: '#eeeeee',
+    borderStyle: 'dashed',
+    backgroundColor: '#fafafa',
+    color: '#bdbdbd',
+    outline: 'none',
+    transition: 'border .24s ease-in-out',
+    alignItems: 'center',
+    display: 'table'
+  },
+  content: {
+    display: 'table-cell',
+    verticalAlign: 'middle'
+  },
+  img: {
+    objectFit: 'contain',
+    width: '100%',
+    height: '100%',
+    minWidth: '100%',
+    minHeight: '100%'
+  }
+}))
 
 export default function ImageUploader() {
   const [files, setFiles] = useState([]);
-  const { getRootProps, getInputProps, open } = useDropzone({
+  const classes = useStyles();
+  const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/jpeg, image/png',
     onDrop: acceptedFiles => {
       setFiles(acceptedFiles.map(file => Object.assign(file, {
@@ -45,10 +45,10 @@ export default function ImageUploader() {
   });
 
   const thumbs = files.map(file => (
-    <div style={thumb} key={file.name}>
+    <div key={file.name}>
       <img
         src={file.preview}
-        style={img}
+        className={classes.img}
       />
     </div>
   ));
@@ -58,16 +58,14 @@ export default function ImageUploader() {
   }, [files]);
 
   return (
-    <section className="container">
-      <div {...getRootProps()} style={baseStyle}>
-        <input {...getInputProps()} />
-        {files.length === 0 ?
-          <p>Drag 'n' drop some files here, or click to select files</p>
-          :
-          <aside>
-            {thumbs}
-          </aside>}
-      </div>
-    </section>
+    <div {...getRootProps()} className={classes.container}>
+      <input {...getInputProps()} />
+      {files.length === 0 ?
+        <p className={classes.content}>Drag 'n' drop some files here, or click to select files</p>
+        :
+        <aside className={classes.content}>
+          {thumbs}
+        </aside>}
+    </div>
   );
 }
