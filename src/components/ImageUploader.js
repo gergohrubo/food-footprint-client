@@ -32,12 +32,13 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function ImageUploader() {
+export default function ImageUploader(props) {
   const [files, setFiles] = useState([]);
   const classes = useStyles();
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/jpeg, image/png',
     onDrop: acceptedFiles => {
+      props.onDrop(acceptedFiles)
       setFiles(acceptedFiles.map(file => Object.assign(file, {
         preview: URL.createObjectURL(file)
       })));
@@ -58,7 +59,7 @@ export default function ImageUploader() {
   }, [files]);
 
   return (
-    <div {...getRootProps()} className={classes.container}>
+    <div className={classes.container} {...getRootProps()} >
       <input {...getInputProps()} />
       {files.length === 0 ?
         <p className={classes.content}>Drag 'n' drop some files here, or click to select files</p>

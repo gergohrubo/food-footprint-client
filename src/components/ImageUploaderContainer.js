@@ -3,17 +3,14 @@ import ImageUploader from './ImageUploader'
 
 class ImageUploaderContainer extends Component {
   state = {
-    pictures: []
+    picture: null
   }
   onDrop = picture => {
-    this.setState({
-      pictures: this.state.pictures.concat(picture),
-    });
+    this.setState({ picture });
   }
   render() {
-    console.log('this.state', this.state)
     return (
-      <ImageUploader />
+      <ImageUploader onDrop={this.onDrop} />
     );
   }
 }
