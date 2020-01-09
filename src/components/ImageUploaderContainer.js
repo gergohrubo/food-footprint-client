@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ImageUploader from './ImageUploader'
-import request from 'superagent'
+import { connect } from 'react-redux'
+import { fetchIngredients } from '../actions'
 
 class ImageUploaderContainer extends Component {
   state = {
@@ -10,13 +11,7 @@ class ImageUploaderContainer extends Component {
     this.setState({ picture });
     const data = new FormData()
     data.append('image', this.state.picture[0], this.state.picture[0].name)
-    request
-      .post(`${process.env.REACT_APP_BACKEND_URL}/image`)
-      .send(data)
-      .then(response => {
-        console.log(response)
-      })
-      .catch(console.error)
+    this.props.dispatch(fetchIngredients(data))
   }
   render() {
     return (
@@ -25,4 +20,4 @@ class ImageUploaderContainer extends Component {
   }
 }
 
-export default ImageUploaderContainer
+export default connect()(ImageUploaderContainer)
