@@ -3,10 +3,16 @@ import { connect } from 'react-redux'
 import Ingredients from './Ingredients'
 
 class IngredientsContainer extends Component {
+  onClick = event => {
+    console.log('clicked', event)
+  }
+  onDelete = event => {
+    console.log('deleted', event)
+  }
   render() {
     return (
       <div>
-        <Ingredients ingredients={this.props.ingredients} />
+        <Ingredients ingredients={this.props.ingredients} onClick={this.onClick} onDelete={this.onDelete} />
       </div>
     );
   }
