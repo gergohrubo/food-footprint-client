@@ -1,13 +1,11 @@
-import { SAVE_INGREDIENTS, ADD_INGREDIENT } from '../actions'
+import { SAVE_RECIPE_NAMES } from '../actions'
 
 const initialState = []
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case SAVE_INGREDIENTS:
+    case SAVE_RECIPE_NAMES:
       return [...action.payload]
-    case ADD_INGREDIENT:
-      return [action.payload, ...state]
     default:
       return state
   }

@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Ingredients from './Ingredients'
+import { saveIngredients } from '../actions'
 
 class IngredientsContainer extends Component {
   onClick = event => {
     console.log('clicked', event)
   }
-  onDelete = event => {
-    console.log('deleted', event)
+  onDelete = ingredientID => {
+    console.log('deleted', ingredientID)
+    const newIngredients = this.props.ingredients.filter(ingredient => ingredient.id !== ingredientID)
+    this.props.dispatch(saveIngredients(newIngredients))
   }
   render() {
     return (

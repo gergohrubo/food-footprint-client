@@ -34,14 +34,15 @@ export default function Ingredients(props) {
   return (
     <div className={classes.container}>
       <div className={classes.content}>
-        {props.ingredients.map(ingredient => (
-          <Chip
-            key={ingredient.id}
-            label={ingredient.name}
-            onClick={props.onClick}
-            onDelete={props.onDelete}
-          />
-        ))}
+        {props.ingredients
+          .map(ingredient => (
+            <Chip
+              key={ingredient.id}
+              label={`${ingredient.name}, ${ingredient.value}`}
+              onClick={props.onClick}
+              onDelete={() => props.onDelete(ingredient.id)}
+            />
+          ))}
       </div>
     </div>
   );
