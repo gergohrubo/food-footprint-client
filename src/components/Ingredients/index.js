@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import Ingredients from './Ingredients'
-import { saveIngredients } from '../actions'
+import Ingredients from '../Ingredients'
+import { saveIngredients } from '../../actions'
 
 class IngredientsContainer extends Component {
   onClick = event => {

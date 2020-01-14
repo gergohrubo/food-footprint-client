@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import ImageUploaderContainer from './ImageUploaderContainer';
-import IngredientsContainer from './IngredientsContainer'
-import AddIngredientContainer from './AddIngredientContainer'
+import ImageUploader from './ImageUploader';
+import Ingredients from './Ingredients'
+import AddIngredient from './AddIngredient'
 
 class Uploadpage extends Component {
   componentDidMount() {
@@ -14,10 +14,10 @@ class Uploadpage extends Component {
     return (
       <div>
         <div className="flex">
-          <ImageUploaderContainer />
-          <IngredientsContainer />
+          <ImageUploader />
+          <Ingredients />
         </div>
-        <AddIngredientContainer history={this.props.history} />
+        <AddIngredient history={this.props.history} />
       </div>
     );
   }

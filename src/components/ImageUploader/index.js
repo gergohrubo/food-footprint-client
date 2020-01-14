@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ImageUploader from './ImageUploader'
+import ImageUploader from '../ImageUploader'
 import { connect } from 'react-redux'
-import { fetchIngredients } from '../actions'
+import { fetchIngredients } from '../../actions'
 
 class ImageUploaderContainer extends Component {
   state = {

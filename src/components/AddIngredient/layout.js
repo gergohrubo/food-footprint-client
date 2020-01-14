@@ -1,6 +1,6 @@
 import React from 'react';
 import { Fade, Link, Backdrop, Modal, Typography, Zoom, TextField, Button } from '@material-ui/core'
-import { modalClass, modalStyle } from '../theme'
+import { modalClass, modalStyle } from '../../theme'
 
 export default function AddIngredients(props) {
   const [open, setOpen] = React.useState(false);

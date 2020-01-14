@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import AddIngredient from './AddIngredient'
+import AddIngredient from '../AddIngredient'
 import { connect } from 'react-redux'
-import { addIngredient, makeId, sendIngredients } from '../actions'
+import { addIngredient, makeId, sendIngredients } from '../../actions'
 
 class AddIngredientContainer extends Component {
   state = {
