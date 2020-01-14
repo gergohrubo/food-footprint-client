@@ -22,17 +22,43 @@ export function addIngredient(ingredient) {
 
 const filterConcepts = concepts => concepts.filter(concept => concept.value > 0.9)
 
-export const fetchIngredients = (data) => dispatch => {
+export const fetchIngredients = data => dispatch => {
   request
     .post(`${baseUrl}/image`)
     .send(data)
     .then(response => {
-      console.log(response.body.concepts)
       const filteredConcepts = filterConcepts(response.body.concepts)
       dispatch(saveIngredients(filteredConcepts))
     })
     .catch(console.error)
 }
+
+export const SAVE_RECIPE_NAMES = 'SAVE_RECIPE_NAMES'
+
+export const SAVE_NUTRIENTS = 'SAVE_NUTRIENTS'
+
+const saveRecipeNames = recipeArray => ({
+  type: SAVE_RECIPE_NAMES,
+  payload: recipeArray
+})
+
+const saveNutrients = nutrientObject => ({
+  type: SAVE_NUTRIENTS,
+  payload: nutrientObject
+})
+
+export const sendIngredients = ingredientArray => dispatch => {
+  const data = { ingredients: ingredientArray }
+  request
+    .post(`${baseUrl}/ingredients`)
+    .send(data)
+    .then(response => {
+      dispatch(saveNutrients(response.body[0]))
+      dispatch(saveRecipeNames(response.body[2]))
+    })
+    .catch(console.error)
+}
+
 
 export function makeId(length) {
   let result = '';

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AddIngredient from './AddIngredient'
 import { connect } from 'react-redux'
-import { addIngredient, makeId } from '../actions'
+import { addIngredient, makeId, sendIngredients } from '../actions'
 
 class AddIngredientContainer extends Component {
   state = {
@@ -22,6 +22,7 @@ class AddIngredientContainer extends Component {
   }
   onSubmitRecipe = () => {
     console.log('submitting the ingredients', this.props.ingredients)
+    this.props.dispatch(sendIngredients(this.props.ingredients))
   }
   render() {
     return (
