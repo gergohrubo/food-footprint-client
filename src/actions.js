@@ -47,7 +47,7 @@ const saveNutrients = nutrientObject => ({
   payload: nutrientObject
 })
 
-export const sendIngredients = ingredientArray => dispatch => {
+export const sendIngredients = (ingredientArray, push) => dispatch => {
   const data = { ingredients: ingredientArray }
   request
     .post(`${baseUrl}/ingredients`)
@@ -55,6 +55,9 @@ export const sendIngredients = ingredientArray => dispatch => {
     .then(response => {
       dispatch(saveNutrients(response.body[0]))
       dispatch(saveRecipeNames(response.body[2]))
+      if (push) {
+        push('/')
+      }
     })
     .catch(console.error)
 }
@@ -87,7 +90,7 @@ function saveJWT(username, jwt) {
 
 export const sendLogin = (username, password) => dispatch => {
   const data = { username, password }
-  request
+  return request
     .post(`${baseUrl}/login`)
     .send(data)
     .then(response => {
@@ -98,7 +101,7 @@ export const sendLogin = (username, password) => dispatch => {
 
 export const signUp = (username, password, email) => dispatch => {
   const data = { username, password, email }
-  request
+  return request
     .post(`${baseUrl}/signup`)
     .send(data)
     .then(response => {

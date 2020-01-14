@@ -22,7 +22,7 @@ class AddIngredientContainer extends Component {
   }
   onSubmitRecipe = () => {
     console.log('submitting the ingredients', this.props.ingredients)
-    this.props.dispatch(sendIngredients(this.props.ingredients))
+    this.props.dispatch(sendIngredients(this.props.ingredients, this.props.history.push))
   }
   render() {
     return (
