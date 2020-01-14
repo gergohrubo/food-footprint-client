@@ -47,7 +47,7 @@ const saveNutrients = nutrientObject => ({
   payload: nutrientObject
 })
 
-export const sendIngredients = ingredientArray => dispatch => {
+export const sendIngredients = (ingredientArray, push) => dispatch => {
   const data = { ingredients: ingredientArray }
   request
     .post(`${baseUrl}/ingredients`)
@@ -55,6 +55,9 @@ export const sendIngredients = ingredientArray => dispatch => {
     .then(response => {
       dispatch(saveNutrients(response.body[0]))
       dispatch(saveRecipeNames(response.body[2]))
+      if (push) {
+        push('/')
+      }
     })
     .catch(console.error)
 }
@@ -68,4 +71,41 @@ export function makeId(length) {
     result += characters.charAt(Math.floor(Math.random() * charactersLength));
   }
   return result;
+}
+
+export const LOG_OUT = 'LOG_OUT'
+
+export const logOut = () => ({
+  type: LOG_OUT
+})
+
+export const LOGGED_IN = 'LOGGED_IN'
+
+function saveJWT(username, jwt) {
+  return {
+    type: LOGGED_IN,
+    payload: { username, jwt }
+  }
+}
+
+export const sendLogin = (username, password) => dispatch => {
+  const data = { username, password }
+  return request
+    .post(`${baseUrl}/login`)
+    .send(data)
+    .then(response => {
+      dispatch(saveJWT(username, response.body.jwt))
+    })
+    .catch(console.error)
+}
+
+export const signUp = (username, password, email) => dispatch => {
+  const data = { username, password, email }
+  return request
+    .post(`${baseUrl}/signup`)
+    .send(data)
+    .then(response => {
+      dispatch(saveJWT(username, response.body.jwt))
+    })
+    .catch(console.error)
 }
