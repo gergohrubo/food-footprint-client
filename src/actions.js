@@ -69,3 +69,40 @@ export function makeId(length) {
   }
   return result;
 }
+
+export const LOG_OUT = 'LOG_OUT'
+
+export const logOut = () => ({
+  type: LOG_OUT
+})
+
+export const LOGGED_IN = 'LOGGED_IN'
+
+function saveJWT(username, jwt) {
+  return {
+    type: LOGGED_IN,
+    payload: { username, jwt }
+  }
+}
+
+export const sendLogin = (username, password) => dispatch => {
+  const data = { username, password }
+  request
+    .post(`${baseUrl}/login`)
+    .send(data)
+    .then(response => {
+      dispatch(saveJWT(username, response.body.jwt))
+    })
+    .catch(console.error)
+}
+
+export const signUp = (username, password, email) => dispatch => {
+  const data = { username, password, email }
+  request
+    .post(`${baseUrl}/signup`)
+    .send(data)
+    .then(response => {
+      dispatch(saveJWT(username, response.body.jwt))
+    })
+    .catch(console.error)
+}
