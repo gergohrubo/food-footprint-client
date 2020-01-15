@@ -50,7 +50,7 @@ const saveNutrients = nutrientObject => ({
 
 export const sendIngredients = (ingredientArray, imageName, jwt, push) => dispatch => {
   const data = { ingredients: ingredientArray, imageName }
-  request
+  return request
     .post(`${baseUrl}/ingredients`)
     .set('Authorization', `Bearer ${jwt}`)
     .send(data)
@@ -109,6 +109,19 @@ export const signUp = (username, password, email) => dispatch => {
     .send(data)
     .then(response => {
       dispatch(saveJWT(username, response.body.jwt))
+    })
+    .catch(console.error)
+}
+
+
+export const sendTitle = (recipeName, imageName, jwt) => () => {
+  const data = { recipeName, imageName }
+  return request
+    .post(`${baseUrl}/title`)
+    .set('Authorization', `Bearer ${jwt}`)
+    .send(data)
+    .then(response => {
+      console.log(response.body)
     })
     .catch(console.error)
 }

@@ -10,5 +10,10 @@ export const useStyles = makeStyles(theme => ({
     paddingTop: '12vh',
     paddingLeft: '15vw',
     paddingRight: '15vw'
+  },
+  logOutBtn: {
+    position: 'absolute',
+    top: '1vh',
+    right: '1vw'
   }
 }))

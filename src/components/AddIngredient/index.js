@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import AddIngredient from './layout'
+import RecipeNameModal from './RecipeNameModal'
 import { connect } from 'react-redux'
-import { addIngredient, makeId, sendIngredients } from '../../actions'
+import { addIngredient, makeId, sendIngredients, sendTitle } from '../../actions'
 
 class AddIngredientContainer extends Component {
   state = {
-    ingredient: ''
+    ingredient: '',
+    modalOpen: false
+  }
+  acceptRecipe = title => {
+    this.props.dispatch(sendTitle(title, this.props.imageName, this.props.user.jwt))
+      .then(this.setState({ modalOpen: false }))
   }
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value })
@@ -21,7 +27,8 @@ class AddIngredientContainer extends Component {
     this.setState({ ingredient: '' })
   }
   onSubmitRecipe = () => {
-    this.props.dispatch(sendIngredients(this.props.ingredients, this.props.imageName, this.props.user.jwt, this.props.history.push))
+    this.props.dispatch(sendIngredients(this.props.ingredients, this.props.imageName, this.props.user.jwt))
+      .then(this.setState({ modalOpen: true }))
   }
   render() {
     return (
@@ -33,6 +40,14 @@ class AddIngredientContainer extends Component {
           ingredient={this.state.ingredient}
           listOfIngredients={this.props.ingredients}
         />
+        {this.props.recipes.length > 0 &&
+          <RecipeNameModal
+            recipes={this.props.recipes}
+            modalOpen={this.state.modalOpen}
+            acceptRecipe={this.acceptRecipe}
+          />
+        }
+
       </div>
     );
   }
@@ -40,7 +55,8 @@ class AddIngredientContainer extends Component {
 
 const mapStateToProps = state => ({
   ingredients: state.ingredients,
-  user: state.currentUser
+  user: state.currentUser,
+  recipes: state.recipes
 })
 
 export default connect(mapStateToProps)(AddIngredientContainer);
