@@ -21,7 +21,7 @@ class AddIngredientContainer extends Component {
     this.setState({ ingredient: '' })
   }
   onSubmitRecipe = () => {
-    this.props.dispatch(sendIngredients(this.props.ingredients, this.props.user.jwt, this.props.history.push))
+    this.props.dispatch(sendIngredients(this.props.ingredients, this.props.imageName, this.props.user.jwt, this.props.history.push))
   }
   render() {
     return (
