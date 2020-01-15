@@ -2,21 +2,18 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(theme => ({
   container: {
-    marginLeft: '5vw',
-    marginTop: '5vw',
-    width: '40vw',
-    height: '40vw',
-    borderRadius: 2,
-    backgroundColor: '#e9ffe3',
-    color: '#c7fff4',
+    marginLeft: '15vw',
+    paddingTop: '15vh',
+    width: '70vw',
+    height: '20vh',
+    backgroundColor: 'none',
     outline: 'none',
-    transition: 'border .24s ease-in-out',
-    alignItems: 'center',
-    display: 'table',
   },
   content: {
-    display: 'table-cell',
-    verticalAlign: 'middle'
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+    maxWidth: '100%'
   },
   img: {
     objectFit: 'contain',

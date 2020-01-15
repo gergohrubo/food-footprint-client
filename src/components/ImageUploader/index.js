@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ImageUploader from '../ImageUploader'
+import ImageUploader from './layout'
 import { connect } from 'react-redux'
 import { fetchIngredients } from '../../actions'
 
@@ -12,7 +12,7 @@ class ImageUploaderContainer extends Component {
     console.log(this.state.picture[0])
     const data = new FormData()
     data.append('image', this.state.picture[0], this.state.picture[0].name)
-    this.props.dispatch(fetchIngredients(data))
+    //this.props.dispatch(fetchIngredients(data))
   }
   render() {
     return (

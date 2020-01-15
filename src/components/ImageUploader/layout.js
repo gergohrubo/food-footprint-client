@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { useStyles } from './styles'
+import { useStyles } from './style'
 
 export default function ImageUploader(props) {
   const [files, setFiles] = useState([]);
@@ -16,7 +16,7 @@ export default function ImageUploader(props) {
   });
 
   const thumbs = files.map(file => (
-    <div key={file.name}>
+    <div key={file.name} className={classes.extraDiv}>
       <img
         src={file.preview}
         className={classes.img}

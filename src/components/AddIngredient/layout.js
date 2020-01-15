@@ -1,8 +1,10 @@
 import React from 'react';
 import { Fade, Link, Backdrop, Modal, Typography, Zoom, TextField, Button } from '@material-ui/core'
 import { modalClass, modalStyle } from '../../theme'
+import { useStyles } from './style'
 
 export default function AddIngredients(props) {
+  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -13,10 +15,15 @@ export default function AddIngredients(props) {
   };
   return (
     <div>
-      <Zoom in={props.listOfIngredients.length > 0}>
-        <Typography>
-          {`Can't`} find what you are looking for? <Link href="#" onClick={handleOpen}>Add a new ingredient</Link>
+      <Zoom in={props.listOfIngredients.length > 0 || true}>
+        <div>
+          <Typography gutterBottom className={classes.text}>
+            {`Can't`} find what you are looking for? <Link href="#" onClick={handleOpen}>Add a new ingredient</Link>
+          </Typography>
+          <Typography gutterBottom className={classes.text}>
+            or
         </Typography>
+        </div>
       </Zoom>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -48,7 +55,7 @@ export default function AddIngredients(props) {
           </form>
         </Fade>
       </Modal>
-      <Zoom in={props.listOfIngredients.length > 0}>
+      <Zoom in={props.listOfIngredients.length > 0 || true}>
         <Button
           onClick={props.onSubmitRecipe}
         >

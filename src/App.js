@@ -3,13 +3,14 @@ import './App.css';
 import { Switch, Route } from "react-router-dom";
 import Homepage from './components/Homepage'
 import UploadPage from './components/Uploadpage'
+import { appStyle } from './theme'
 
 function App() {
   return (
-    <div className="App">
+    <div style={appStyle}>
       <Switch>
-        <Route path="/upload" component={UploadPage} />
-        <Route component={Homepage} />
+        <Route path="/" exact component={Homepage} />
+        <Route path="/upload" exact component={UploadPage} />
       </Switch>
     </div>
   );

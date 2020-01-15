@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AddIngredient from '../AddIngredient'
+import AddIngredient from './layout'
 import { connect } from 'react-redux'
 import { addIngredient, makeId, sendIngredients } from '../../actions'
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import ImageUploader from './ImageUploader';
+import { Zoom } from '@material-ui/core'
 import Ingredients from './Ingredients'
 import AddIngredient from './AddIngredient'
 
@@ -13,19 +14,20 @@ class Uploadpage extends Component {
   render() {
     return (
       <div>
-        <div className="flex">
-          <ImageUploader />
-          <Ingredients />
-        </div>
-        <AddIngredient history={this.props.history} />
+        <Zoom in={true}>
+          <div >
+            {this.props.ingredients.length === 0 && <ImageUploader />}
+            {this.props.ingredients.length > 0 && <Ingredients />}
+            {this.props.ingredients.length > 0 && <AddIngredient history={this.props.history} />}
+          </div>
+        </Zoom>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  user: state.currentUser
+  user: state.currentUser,
+  ingredients: state.ingredients
 })
-
-
 export default connect(mapStateToProps)(Uploadpage);
