@@ -21,8 +21,7 @@ class AddIngredientContainer extends Component {
     this.setState({ ingredient: '' })
   }
   onSubmitRecipe = () => {
-    console.log('submitting the ingredients', this.props.ingredients)
-    this.props.dispatch(sendIngredients(this.props.ingredients, this.props.history.push))
+    this.props.dispatch(sendIngredients(this.props.ingredients, this.props.user.jwt, this.props.history.push))
   }
   render() {
     return (
@@ -40,7 +39,8 @@ class AddIngredientContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  ingredients: state.ingredients
+  ingredients: state.ingredients,
+  user: state.currentUser
 })
 
 export default connect(mapStateToProps)(AddIngredientContainer);

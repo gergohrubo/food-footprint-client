@@ -12,7 +12,7 @@ class ImageUploaderContainer extends Component {
     console.log(this.state.picture[0])
     const data = new FormData()
     data.append('image', this.state.picture[0], this.state.picture[0].name)
-    //this.props.dispatch(fetchIngredients(data))
+    this.props.dispatch(fetchIngredients(data, this.props.user.jwt))
   }
   render() {
     return (
@@ -21,4 +21,8 @@ class ImageUploaderContainer extends Component {
   }
 }
 
-export default connect()(ImageUploaderContainer)
+const mapStateToProps = state => ({
+  user: state.currentUser
+})
+
+export default connect(mapStateToProps)(ImageUploaderContainer)

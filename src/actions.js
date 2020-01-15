@@ -22,9 +22,10 @@ export function addIngredient(ingredient) {
 
 const filterConcepts = concepts => concepts.filter(concept => concept.value > 0.9)
 
-export const fetchIngredients = data => dispatch => {
+export const fetchIngredients = (data, jwt) => dispatch => {
   request
     .post(`${baseUrl}/image`)
+    .set('Authorization', `Bearer ${jwt}`)
     .send(data)
     .then(response => {
       const filteredConcepts = filterConcepts(response.body.concepts)
@@ -47,10 +48,11 @@ const saveNutrients = nutrientObject => ({
   payload: nutrientObject
 })
 
-export const sendIngredients = (ingredientArray, push) => dispatch => {
+export const sendIngredients = (ingredientArray, jwt, push) => dispatch => {
   const data = { ingredients: ingredientArray }
   request
     .post(`${baseUrl}/ingredients`)
+    .set('Authorization', `Bearer ${jwt}`)
     .send(data)
     .then(response => {
       dispatch(saveNutrients(response.body[0]))
