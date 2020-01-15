@@ -5,9 +5,13 @@ import { connect } from 'react-redux'
 import moment from 'moment'
 import Grid from './Grid'
 import List from './List'
+import SuggestionModal from './SuggestionModal'
 import { flexDiv, buttonContainer } from './style'
 
 class index extends Component {
+  state = {
+    modalOpen: false
+  }
   componentDidMount() {
     if (!this.props.user.jwt) {
       this.props.history.push('/')
@@ -16,6 +20,10 @@ class index extends Component {
   }
   onClick = () => {
     this.props.dispatch(fetchSuggestions(moment(), this.props.user.jwt))
+      .then(() => this.setState({ modalOpen: true }))
+  }
+  handleClose = () => {
+    this.setState({ modalOpen: false })
   }
   render() {
     return (
@@ -47,6 +55,11 @@ class index extends Component {
             Go to homepage
     </Button>
         </div>
+        <SuggestionModal
+          modalOpen={this.state.modalOpen}
+          handleClose={this.handleClose}
+          suggestions={this.props.suggestions}
+        />
       </div>
     );
   }
@@ -54,7 +67,8 @@ class index extends Component {
 
 const mapStateToProps = state => ({
   user: state.currentUser,
-  diaryEntry: state.diaryEntries
+  diaryEntry: state.diaryEntries,
+  suggestions: state.suggestions
 })
 
 export default connect(mapStateToProps)(index);
