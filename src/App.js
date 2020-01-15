@@ -1,13 +1,19 @@
 import React from 'react';
 import './App.css';
-import ImageUploaderContainer from './components/ImageUploaderContainer';
-import IngredientsContainer from './components/IngredientsContainer'
+import { Switch, Route } from "react-router-dom";
+import Homepage from './components/Homepage'
+import UploadPage from './components/Uploadpage'
+import NutrientsPage from './components/NutrientsPage'
+import { appStyle } from './theme'
 
 function App() {
   return (
-    <div className="App">
-      <ImageUploaderContainer />
-      <IngredientsContainer />
+    <div style={appStyle}>
+      <Switch>
+        <Route path="/" exact component={Homepage} />
+        <Route path="/upload" exact component={UploadPage} />
+        <Route path="/nutrient" exact component={NutrientsPage} />
+      </Switch>
     </div>
   );
 }

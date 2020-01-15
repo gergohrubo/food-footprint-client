@@ -4,11 +4,18 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from "react-redux";
+import { BrowserRouter as Router } from "react-router-dom";
+import { ThemeProvider } from '@material-ui/core/styles';
 import store from './store'
+import { theme } from './theme'
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <ThemeProvider theme={theme}>
+      <Router>
+        <App />
+      </Router>
+    </ThemeProvider>
   </Provider>
   , document.getElementById('root'));
 
