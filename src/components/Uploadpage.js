@@ -6,6 +6,12 @@ import Ingredients from './Ingredients'
 import AddIngredient from './AddIngredient'
 
 class Uploadpage extends Component {
+  state = {
+    imageName: ''
+  }
+  setImageName = imageName => {
+    this.setState({ imageName })
+  }
   componentDidMount() {
     if (!this.props.user.jwt) {
       this.props.history.push('/')
@@ -16,9 +22,9 @@ class Uploadpage extends Component {
       <div>
         <Zoom in={true}>
           <div >
-            {this.props.ingredients.length === 0 && <ImageUploader />}
+            {this.props.ingredients.length === 0 && <ImageUploader setImageName={this.setImageName} />}
             {this.props.ingredients.length > 0 && <Ingredients />}
-            {this.props.ingredients.length > 0 && <AddIngredient history={this.props.history} />}
+            {this.props.ingredients.length > 0 && <AddIngredient history={this.props.history} imageName={this.state.imageName} />}
           </div>
         </Zoom>
       </div>

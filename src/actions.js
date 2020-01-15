@@ -48,8 +48,8 @@ const saveNutrients = nutrientObject => ({
   payload: nutrientObject
 })
 
-export const sendIngredients = (ingredientArray, jwt, push) => dispatch => {
-  const data = { ingredients: ingredientArray }
+export const sendIngredients = (ingredientArray, imageName, jwt, push) => dispatch => {
+  const data = { ingredients: ingredientArray, imageName }
   request
     .post(`${baseUrl}/ingredients`)
     .set('Authorization', `Bearer ${jwt}`)
