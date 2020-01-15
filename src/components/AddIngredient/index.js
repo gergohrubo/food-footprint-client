@@ -9,9 +9,11 @@ class AddIngredientContainer extends Component {
     ingredient: '',
     modalOpen: false
   }
-  acceptRecipe = title => {
-    this.props.dispatch(sendTitle(title, this.props.imageName, this.props.user.jwt))
-      .then(this.setState({ modalOpen: false }))
+  acceptRecipe = async title => {
+    await this.props.dispatch(sendTitle(title, this.props.imageName, this.props.user.jwt))
+    this.setState({ modalOpen: false })
+    this.props.setImageName('')
+    this.props.history.push('/nutrient')
   }
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value })

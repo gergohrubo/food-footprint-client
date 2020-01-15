@@ -24,7 +24,7 @@ class Uploadpage extends Component {
           <div >
             {this.props.ingredients.length === 0 && <ImageUploader setImageName={this.setImageName} />}
             {this.props.ingredients.length > 0 && <Ingredients />}
-            {this.props.ingredients.length > 0 && <AddIngredient history={this.props.history} imageName={this.state.imageName} />}
+            {this.props.ingredients.length > 0 && <AddIngredient history={this.props.history} imageName={this.state.imageName} setImageName={this.setImageName} />}
           </div>
         </Zoom>
       </div>

@@ -1,4 +1,4 @@
-import { SAVE_INGREDIENTS, ADD_INGREDIENT } from '../actions'
+import { SAVE_INGREDIENTS, ADD_INGREDIENT, CLEAR_INGREDIENTS } from '../actions'
 
 const initialState = []
 
@@ -8,6 +8,8 @@ export default function (state = initialState, action) {
       return [...action.payload]
     case ADD_INGREDIENT:
       return [action.payload, ...state]
+    case CLEAR_INGREDIENTS:
+      return initialState
     default:
       return state
   }
