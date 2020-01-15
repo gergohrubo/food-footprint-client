@@ -9,7 +9,7 @@ const Homepage = (props) => {
     <div>
       <Fade in={true}>
         <div>
-          <IconButton aria-label="logout" onClick={props.logOut}>
+          <IconButton aria-label="logout" onClick={props.logOut} className={classes.logOutBtn}>
             <ExitToAppIcon />
           </IconButton>
           <Typography variant="h2" className={classes.title}>

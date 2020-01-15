@@ -37,9 +37,6 @@ export const theme = createMuiTheme({
     MuiIconButton: {
       root: {
         color: teal[500],
-        position: 'absolute',
-        top: '1vh',
-        right: '1vw'
       }
     },
     MuiChip: {

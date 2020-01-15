@@ -6,6 +6,8 @@ export const SAVE_INGREDIENTS = 'SAVE_INGREDIENTS'
 
 export const ADD_INGREDIENT = 'ADD_INGREDIENT'
 
+export const CLEAR_INGREDIENTS = 'CLEAR_INGREDIENTS'
+
 export function saveIngredients(ingredientsArray) {
   return {
     type: SAVE_INGREDIENTS,
@@ -17,6 +19,12 @@ export function addIngredient(ingredient) {
   return {
     type: ADD_INGREDIENT,
     payload: ingredient
+  }
+}
+
+export function clearIngredients() {
+  return {
+    type: CLEAR_INGREDIENTS
   }
 }
 
@@ -50,7 +58,7 @@ const saveNutrients = nutrientObject => ({
 
 export const sendIngredients = (ingredientArray, imageName, jwt, push) => dispatch => {
   const data = { ingredients: ingredientArray, imageName }
-  request
+  return request
     .post(`${baseUrl}/ingredients`)
     .set('Authorization', `Bearer ${jwt}`)
     .send(data)
@@ -109,6 +117,26 @@ export const signUp = (username, password, email) => dispatch => {
     .send(data)
     .then(response => {
       dispatch(saveJWT(username, response.body.jwt))
+    })
+    .catch(console.error)
+}
+
+export const REDUCE_RECIPEARRAY = 'REDUCE_RECIPEARRAY'
+
+const reduceRecipeArray = title => ({
+  type: REDUCE_RECIPEARRAY,
+  payload: title
+})
+
+
+export const sendTitle = (recipeName, imageName, jwt) => dispatch => {
+  const data = { recipeName, imageName }
+  return request
+    .post(`${baseUrl}/title`)
+    .set('Authorization', `Bearer ${jwt}`)
+    .send(data)
+    .then(response => {
+      dispatch(reduceRecipeArray(recipeName))
     })
     .catch(console.error)
 }
