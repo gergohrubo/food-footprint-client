@@ -160,3 +160,23 @@ export const fetchDiary = (date, jwt) => dispatch => {
     })
     .catch(console.error)
 }
+
+export const SAVE_SUGGESTIONS = 'SAVE_SUGGESTIONS'
+
+const saveSuggestions = (suggestionArray) => ({
+  type: SAVE_SUGGESTIONS,
+  payload: suggestionArray
+})
+
+export const fetchSuggestions = (date, jwt) => dispatch => {
+  const nutrientsArray = ['Calories', 'Protein', 'Vitamin C']
+  const data = { date, nutrientsArray }
+  return request
+    .post(`${baseUrl}/suggest`)
+    .set('Authorization', `Bearer ${jwt}`)
+    .send(data)
+    .then(response => {
+      dispatch(saveSuggestions(response.body))
+    })
+    .catch(console.error)
+}

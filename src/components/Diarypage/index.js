@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchDiary } from '../../actions'
+import { fetchDiary, fetchSuggestions } from '../../actions'
 import { Button, Typography } from '@material-ui/core'
 import { connect } from 'react-redux'
 import moment from 'moment'
@@ -15,7 +15,7 @@ class index extends Component {
     this.props.dispatch(fetchDiary(moment(), this.props.user.jwt))
   }
   onClick = () => {
-    this.props.history.push('/')
+    this.props.dispatch(fetchSuggestions(moment(), this.props.user.jwt))
   }
   render() {
     return (
@@ -38,6 +38,11 @@ class index extends Component {
         <div style={buttonContainer}>
           <Button
             onClick={this.onClick}
+          >
+            What should I eat?
+    </Button>
+          <Button
+            onClick={() => this.props.history.push('/')}
           >
             Go to homepage
     </Button>
