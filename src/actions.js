@@ -140,3 +140,23 @@ export const sendTitle = (recipeName, imageName, jwt) => dispatch => {
     })
     .catch(console.error)
 }
+
+export const SAVE_DIARY = 'SAVE_DIARY'
+
+const saveDiary = ({ meals, nutrients }) => ({
+  type: SAVE_DIARY,
+  payload: { meals, nutrients }
+})
+
+export const fetchDiary = (date, jwt) => dispatch => {
+  const data = { date }
+  return request
+    .post(`${baseUrl}/diary`)
+    .set('Authorization', `Bearer ${jwt}`)
+    .send(data)
+    .then(response => {
+      const { meals, nutrients } = response.body
+      dispatch(saveDiary({ meals, nutrients }))
+    })
+    .catch(console.error)
+}
