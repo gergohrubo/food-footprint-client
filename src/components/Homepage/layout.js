@@ -22,7 +22,7 @@ const Homepage = (props) => {
               Upload a new meal
       </Button>
             <Button
-              onClick={() => console.log('diary page goes here')}
+              onClick={() => props.history.push('/diary')}
             >
               Check your diary
       </Button>

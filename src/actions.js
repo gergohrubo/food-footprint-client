@@ -140,3 +140,48 @@ export const sendTitle = (recipeName, imageName, jwt) => dispatch => {
     })
     .catch(console.error)
 }
+
+export const SAVE_DIARY = 'SAVE_DIARY'
+
+const saveDiary = ({ meals, nutrients }) => ({
+  type: SAVE_DIARY,
+  payload: { meals, nutrients }
+})
+
+export const fetchDiary = (date, jwt) => dispatch => {
+  const data = { date }
+  return request
+    .post(`${baseUrl}/diary`)
+    .set('Authorization', `Bearer ${jwt}`)
+    .send(data)
+    .then(response => {
+      console.log('something is wrong here too', response.body)
+      const meals = response.body.meals ? [...response.body.meals] : []
+      const nutrients = response.body.nutrients ? { ...response.body.nutrients } : {}
+      dispatch(saveDiary({ meals, nutrients }))
+    })
+    .catch(error => {
+      console.log('something is wrong')
+      console.error(error)
+    })
+}
+
+export const SAVE_SUGGESTIONS = 'SAVE_SUGGESTIONS'
+
+const saveSuggestions = (suggestionArray) => ({
+  type: SAVE_SUGGESTIONS,
+  payload: suggestionArray
+})
+
+export const fetchSuggestions = (date, jwt) => dispatch => {
+  const nutrientsArray = ['Calories', 'Protein', 'Vitamin C']
+  const data = { date, nutrientsArray }
+  return request
+    .post(`${baseUrl}/suggest`)
+    .set('Authorization', `Bearer ${jwt}`)
+    .send(data)
+    .then(response => {
+      dispatch(saveSuggestions(response.body))
+    })
+    .catch(console.error)
+}
