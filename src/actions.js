@@ -1,6 +1,6 @@
 import request from 'superagent'
 
-const baseUrl = 'http://food-app-gh.herokuapp.com'
+const baseUrl = 'https://food-app-gh.herokuapp.com'
 
 export const SAVE_INGREDIENTS = 'SAVE_INGREDIENTS'
 
