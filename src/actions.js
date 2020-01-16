@@ -155,10 +155,15 @@ export const fetchDiary = (date, jwt) => dispatch => {
     .set('Authorization', `Bearer ${jwt}`)
     .send(data)
     .then(response => {
-      const { meals, nutrients } = response.body
+      console.log('something is wrong here too', response.body)
+      const meals = response.body.meals ? [...response.body.meals] : []
+      const nutrients = response.body.nutrients ? { ...response.body.nutrients } : {}
       dispatch(saveDiary({ meals, nutrients }))
     })
-    .catch(console.error)
+    .catch(error => {
+      console.log('something is wrong')
+      console.error(error)
+    })
 }
 
 export const SAVE_SUGGESTIONS = 'SAVE_SUGGESTIONS'

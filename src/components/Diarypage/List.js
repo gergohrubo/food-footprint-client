@@ -1,8 +1,5 @@
 import React from 'react';
-import { Typography, Button } from '@material-ui/core'
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import { Typography, List, ListItem, ListItemText } from '@material-ui/core'
 import { useStyles } from './style'
 
 export default function NutrientsPage(props) {
@@ -24,7 +21,7 @@ export default function NutrientsPage(props) {
           <ListItem style={makeListStyle(valueArray[index]['percentOfDailyNeeds'])}>
             <ListItemText
               primary={<Typography>{name}</Typography>}
-              secondary={<Typography>{`${valueArray[index]['amount']} ${valueArray[index]['unit']}`}</Typography>}
+              secondary={<Typography>{`${Number.parseFloat(valueArray[index]['amount']).toFixed(2)} ${valueArray[index]['unit']}`}</Typography>}
             />
           </ListItem>
         ))}
