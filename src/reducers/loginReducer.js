@@ -1,6 +1,6 @@
 import { LOGGED_IN, LOG_OUT } from '../actions'
 
-const initialState = localStorage.credentials ? JSON.parse(localStorage.credentials) : {
+const initialState = {
   username: '',
   jwt: ''
 }
