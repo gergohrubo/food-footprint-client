@@ -104,7 +104,6 @@ export const sendLogin = (username, password) => dispatch => {
     .post(`${baseUrl}/login`)
     .send(data)
     .then(response => {
-      localStorage.credentials = JSON.stringify({ username, jwt: response.body.jwt });
       dispatch(saveJWT(username, response.body.jwt))
     })
     .catch(console.error)
