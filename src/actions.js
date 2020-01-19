@@ -1,6 +1,6 @@
 import request from 'superagent'
 
-const baseUrl = process.env.REACT_APP_BACKEND_URL
+const baseUrl = 'https://food-app-gh.herokuapp.com'
 
 export const SAVE_INGREDIENTS = 'SAVE_INGREDIENTS'
 
