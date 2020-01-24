@@ -3,20 +3,13 @@ import { Typography, Button } from '@material-ui/core'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { useStyles } from './styles'
+import { useStyles, makeListStyle } from './styles'
 
 export default function NutrientsPage(props) {
   const classes = useStyles();
   const keyArray = Object.keys(props.nutrients)
   const valueArray = Object.values(props.nutrients)
   const title = props.recipes.length > 0 && props.recipes[0]['title']
-
-  const makeListStyle = percent => ({
-    background: `linear-gradient(to left, #a8e063, #1d170c)`,
-    backgroundSize: `${percent}% 20%`,
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "left bottom"
-  })
 
   return (
     <div>
@@ -26,10 +19,17 @@ export default function NutrientsPage(props) {
       <div className={classes.root}>
         <List>
           {keyArray.map((name, index) => (
-            <ListItem style={makeListStyle(valueArray[index]['percentOfDailyNeeds'])}>
+            <ListItem
+              style={makeListStyle(valueArray[index]['percentOfDailyNeeds'])}
+              key={keyArray[index]}
+            >
               <ListItemText
                 primary={<Typography>{name}</Typography>}
-                secondary={<Typography>{`${valueArray[index]['amount']} ${valueArray[index]['unit']}`}</Typography>}
+                secondary={
+                  <Typography>
+                    {`${Number.parseFloat(valueArray[index]['amount']).toFixed(2)} ${valueArray[index]['unit']}`}
+                  </Typography>
+                }
               />
             </ListItem>
           ))}

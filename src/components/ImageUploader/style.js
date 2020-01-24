@@ -33,10 +33,5 @@ export const useStyles = makeStyles(theme => ({
     maxHeight: '100%',
     maxWidth: '100%',
     objectFit: 'contain',
-    // width: '100%',
-    // height: '100%',
-    // overflow: 'hidden'
-    // minWidth: '100%',
-    // minHeight: '100%'
   }
 }))

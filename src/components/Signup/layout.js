@@ -45,7 +45,6 @@ export default function Layout(props) {
                 onChange={props.onChange}
               />
               <Button
-                variant="contained"
                 type="submit"
                 onClick={props.onSubmit}
               >

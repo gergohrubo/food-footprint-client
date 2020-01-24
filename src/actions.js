@@ -1,6 +1,6 @@
 import request from 'superagent'
 
-const baseUrl = 'https://food-app-gh.herokuapp.com'
+const baseUrl = 'http://localhost:4000'
 
 export const SAVE_INGREDIENTS = 'SAVE_INGREDIENTS'
 
