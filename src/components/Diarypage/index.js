@@ -25,9 +25,6 @@ class index extends Component {
   }
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value })
-    console.log('the date', this.state.date)
-    console.log('the target value', event.target.value)
-    console.log('moment', moment().format('YYYY-MM-DD'))
     this.props.dispatch(fetchDiary(event.target.value, this.props.user.jwt))
   }
   handleClose = () => {
@@ -45,7 +42,6 @@ class index extends Component {
           type="date"
           name="date"
           value={this.state.date}
-          //defaultValue={moment().format('YYYY-MM-DD')}
           onChange={this.onChange}
           style={textField}
           InputLabelProps={{

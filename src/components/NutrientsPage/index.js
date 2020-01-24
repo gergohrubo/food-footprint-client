@@ -4,15 +4,6 @@ import NutrientsPage from './layout'
 import { clearIngredients } from '../../actions'
 
 class NutrientsContainer extends Component {
-  state = {
-    nutrients: {
-      Calories: {
-        amount: 555555,
-        percentOfDailyNeeds: 55,
-        unit: 'g'
-      }
-    }
-  }
   onClick = page => {
     this.props.dispatch(clearIngredients())
     this.props.history.push(page)

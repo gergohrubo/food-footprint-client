@@ -24,7 +24,7 @@ export default function RecipeNameModal(props) {
           </Typography>
             <List>
               {props.suggestions && props.suggestions.map(suggestion => (
-                <ListItem>
+                <ListItem key={suggestion.title}>
                   <ListItemText
                     primary={<Typography>{suggestion.title}</Typography>}
                   />

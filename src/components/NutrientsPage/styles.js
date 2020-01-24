@@ -1,5 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles';
 
+export const makeListStyle = percent => ({
+  background: `linear-gradient(to left, #a8e063, #1d170c)`,
+  backgroundSize: `${percent}% 20%`,
+  backgroundRepeat: "no-repeat",
+  backgroundPosition: "left bottom"
+})
+
 export const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',

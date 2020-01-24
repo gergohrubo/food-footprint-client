@@ -10,9 +10,12 @@ export default function Ingredients(props) {
       <div className={classes.content}>
         {props.ingredients
           .map(ingredient => (
-            <Zoom in={true}>
+            <Zoom
+              in={true}
+              key={ingredient.id}
+            >
               <Chip
-                key={ingredient.id}
+                key={ingredient.name}
                 label={ingredient.name}
                 onDelete={() => props.onDelete(ingredient.id)}
               />
