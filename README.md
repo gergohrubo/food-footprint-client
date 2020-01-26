@@ -1,68 +1,95 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center">
+  <b>:stew:</b><br>
+  <b>Food-diary</b><br>
+</h1>
 
-## Available Scripts
+<h4 align="center">Analyze your meals and keep track of your daily nutrition!</h4>
 
-In the project directory, you can run:
+![uploading-image](https://github.com/gergohrubo/food-footprint-client/blob/master/gifs/overview_uploadimg.gif?raw=true)
 
-### `yarn start`
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ec2b2103-f2f7-4606-92e8-76cd3a3b05a3/deploy-status)](https://app.netlify.com/sites/food-diary-gh/deploys)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### This is the frontend part of my Food-diary project. You can view the [backend](https://github.com/gergohrubo/food-footprint-server), or checkout the [deployed version](https://food-app-gh.netlify.com/)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Table of contents
 
-### `yarn test`
+* [What is this project about](#what-is-this-project-about)
+* [Technologies used](#technologies-used)
+* [Features breakdown](#features-breakdown)
+* [My git workflow](#my-git-workflow)
+* [How to use](#how-to-use)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## What is this project about
 
-### `yarn build`
+#### The purpose of the project is to
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Provide a user-friendly frontend for an extensive backend app that is accessible both via web and mobile
+* Show a well structured React app with React-Router and division into presentational and container components
+* Incorporate Redux for state management and Redux-thunks for making asynchronous calls to the backend
+* Practice file (image) handling on the frontend with uploading and downloading to the backend
+* To use Material UI with custom-defined theme and styled components
+* To showcase disciplined git usage
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Technologies used
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* [React](https://github.com/gergohrubo/food-footprint-client/tree/master/src/components)
+* [React-Router](https://github.com/gergohrubo/food-footprint-client/blob/master/src/index.js)
+* [Redux](https://github.com/gergohrubo/food-footprint-client/tree/master/src/reducers)
+* [Redux-thunk](https://github.com/gergohrubo/food-footprint-client/blob/master/src/actions.js)
 
-### `yarn eject`
+## Features breakdown
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#### For detailed description of how the following features were implemented see the pull requests:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* [Image uploader component](https://github.com/gergohrubo/food-footprint-client/pull/2)
+* [Listing the ingredients on the picture](https://github.com/gergohrubo/food-footprint-client/pull/3)
+* [Listing all the nutrients that you received from said ingredients](https://github.com/gergohrubo/food-footprint-client/pull/10)
+* [Adding diary page](https://github.com/gergohrubo/food-footprint-client/pull/12)
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## My git workflow
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### In this project my aim was to
 
-## Learn More
+* Use clear branch names with feat/ fix/ and bug/ prefixes
+* Write prompt but descriptive commit messages
+* Keep the separation of concerns between branches
+* Write extensive summaries for pull requests
+* Use development branch for testing while master branch is on continuous deployment
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Here is a branching model for this project:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+master (auto deploys) ______________________
+                       \               /
+development             \_____________/- pull request
+                         \           /
+feat/some-feature         \_commits_/- pull request
+```
 
-### Code Splitting
+## How to use
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+The project was bootstrapped using create-react-app cli. To start clone the github repository, install dependencies via npm and run with
 
-### Analyzing the Bundle Size
+```
+npm start
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+Which makes it accessible to you on localhost port 3000. The backend is linked to my deployed backend on Heroku, to change that, go to ./src/actions.js and replace the baseUrl variable accordingly.
 
-### Making a Progressive Web App
+From the landing page you can start registering a meal that you had that day by clicking "Upload a new meal"
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+![uploading-image](https://github.com/gergohrubo/food-footprint-client/blob/master/gifs/overview_uploadimg.gif?raw=true)
 
-### Advanced Configuration
+If you are on your phone you can just take a picture of your meal on the spot!
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+Next up is deciding whether the ingredients guessed by the app are correct or not. You can add or remove ingredients, then submit them. After submission the app will again guess what the name of the recipe was. You can either take any of the guesses or enter the name on your own.
 
-### Deployment
+![select-ingredient](https://github.com/gergohrubo/food-footprint-client/blob/master/gifs/overview_select_ingredient_recipe.gif?raw=true)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+After submitting the ingredients with the recipe name you will receive the total nutrients your meal provided. The length of the bars below each nutrient indicates the percentage of the daily recommended value.
 
-### `yarn build` fails to minify
+![nutrients](https://github.com/gergohrubo/food-footprint-client/blob/master/gifs/overview_nutrients.gif?raw=true)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+When finished, from the landing page you can navigate to your diary page which is an overview of your total daily intake, broken down to all the meals you had (with picture, recipe name and ingredients) and the sum of the total nutrients from every meal you had that day! With the date picker you can browse your intakes in past days, and by clicking on "What should I eat?" you receive a list of suggested recipes that brings your total daily input to 100% from the most important nutrients!
+
+![diary-page](https://github.com/gergohrubo/food-footprint-client/blob/master/gifs/overview_diary_page.gif?raw=true)
