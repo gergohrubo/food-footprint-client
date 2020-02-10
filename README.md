@@ -9,7 +9,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/ec2b2103-f2f7-4606-92e8-76cd3a3b05a3/deploy-status)](https://app.netlify.com/sites/food-diary-gh/deploys)
 
-### This is the frontend part of my Food-diary project. You can view the [backend](https://github.com/gergohrubo/food-footprint-server), or checkout the [deployed version](https://food-app-gh.netlify.com/)
+### This is the frontend part of my Food-diary project. You can view the [backend](https://github.com/gergohrubo/food-footprint-server), or checkout the [deployed version](https://food-diary-gh.netlify.com/)
 
 ## Table of contents
 
